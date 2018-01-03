@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: priporocanje-service
+  labels:
+    app: priporocanje-storitev
+spec:
+  type: NodePort
+  ports:
+  - port: 8081
+    protocol: TCP
+    targetPort: 8081
+    nodePort: 31225
+  selector:
+    app: priporocanje-storitev

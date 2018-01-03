@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: priporocanje-service-monitor
+  labels:
+    team: katalogteam
+spec:
+  selector:
+    matchLabels:
+      app: priporocanje-storitev
+  endpoints:
+  - port: server

@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: priporocanje-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: priporocanje-storitev
+    spec:
+      containers:
+      - image: tjasaj/priporocanje-storitev:0.01
+        name: priporocanje-storitev
+        env:
+          - name: KUMULUZEE_DISCOVERY_CLUSTER
+            value: bluemix
+          - name: KUMULUZEE_DISCOVERY_ETCD_HOSTS
+            value: http://etcd:2379
+          - name: KUMULUZEE_CONFIG_ETCD_HOSTS
+            value: http://etcd:2379
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: server
+          initialDelaySeconds: 20
+          periodSeconds: 3
+        ports:
+        - containerPort: 8081
+          name: server
+          protocol: TCP

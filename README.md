@@ -1,2 +1,1 @@
-# priporocanjeStoritev
-Priporočanje storitev
+# Mikrostoritev: priporocanje storitev
